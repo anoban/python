@@ -15,3 +15,6 @@ links = [tag.find_all("a", attrs = {"target" : "_blank"}) for tag in table.find_
 
 links[0]
 len(links[0])
+
+print("Hello world!")
+
