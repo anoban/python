@@ -91,6 +91,6 @@ Question(fclass = np.arange(0, 3), fc_freq = np.array([25, 19, 6]), lquadrat = 0
 print("2019 ECE")
 Question(fclass = np.arange(0, 4), fc_freq = np.array([15, 9, 5, 1]), lquadrat = 0.5, wquadrat = 0.5)
 print("2017 ECE")
-Question(fclass = np.arange(0, 4), fc_freq = np.array([46, 34, 14, 6]), lquadrat = 0.5, wquadrat = 0.5)
+Question(fclass = np.arange(0, 4), fc_freq = np.array([46, 34, 14, 6]), lquadrat = 0.3, wquadrat = 0.3)
 print("2015 ECE")
 Question(fclass = np.arange(0, 4), fc_freq = np.array([25, 19, 5, 1]), lquadrat = 0.5, wquadrat = 0.5)
