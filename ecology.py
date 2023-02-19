@@ -1,6 +1,8 @@
+import os
 import numpy as np
+import numpy.typing as npTyping
 
-def Question(fclass: np.array, fc_freq: np.array, wquadrat: float, lquadrat: float) -> None:
+def Question(fclass: npTyping.NDArray[np.int64], fc_freq: npTyping.NDArray[np.int64], wquadrat: float, lquadrat: float) -> None:
     
     """
     A function that takes in two one dimensional numpy arrays for fc_frequency classes and fc_frequencies, and two floats for
@@ -13,11 +15,11 @@ def Question(fclass: np.array, fc_freq: np.array, wquadrat: float, lquadrat: flo
     assert len(fclass) == len(fc_freq), "Argument arrays must be of equal lengths!."
     
     # area of the quadrat
-    qarea = wquadrat * lquadrat
+    qarea: float = wquadrat * lquadrat
     
     # get the number of quadrats where the spcies was present and divide by the total number of quadrats
-    _frequency = fc_freq[fclass != 0].sum() / fc_freq.sum() * 100
-    print(f"Frequency: {_frequency}%.")
+    _frequency: float = fc_freq[fclass != 0].sum() / fc_freq.sum() * 100
+    print("Frequency: %0.2f%%." % _frequency)
     print()
     
     # multiply the fc_frequency calss by fc_frequency and get the total of individuals, divide that number by the product of number of quadrats
@@ -86,11 +88,13 @@ def Question(fclass: np.array, fc_freq: np.array, wquadrat: float, lquadrat: flo
 # print("Test") 
 # Question(fclass = np.arange(0, 4), fc_freq = np.array([28, 18, 3, 1]), lquadrat = 1.5, wquadrat = 1.5)
 
-print("2018 ICA")
-Question(fclass = np.arange(0, 3), fc_freq = np.array([25, 19, 6]), lquadrat = 0.5, wquadrat = 0.5)
-print("2019 ECE")
-Question(fclass = np.arange(0, 4), fc_freq = np.array([15, 9, 5, 1]), lquadrat = 0.5, wquadrat = 0.5)
-print("2017 ECE")
-Question(fclass = np.arange(0, 4), fc_freq = np.array([46, 34, 14, 6]), lquadrat = 0.3, wquadrat = 0.3)
-print("2015 ECE")
-Question(fclass = np.arange(0, 4), fc_freq = np.array([25, 19, 5, 1]), lquadrat = 0.5, wquadrat = 0.5)
+if __name__ == "__main__":    
+    print("2018 ICA")
+    Question(fclass = np.arange(0, 3), fc_freq = np.array([25, 19, 6]), lquadrat = 0.5, wquadrat = 0.5)
+    print("2019 ECE")
+    Question(fclass = np.arange(0, 4), fc_freq = np.array([15, 9, 5, 1]), lquadrat = 0.5, wquadrat = 0.5)
+    print("2017 ECE")
+    Question(fclass = np.arange(0, 4), fc_freq = np.array([46, 34, 14, 6]), lquadrat = 0.3, wquadrat = 0.3)
+    print("2015 ECE")
+    Question(fclass = np.arange(0, 4), fc_freq = np.array([25, 19, 5, 1]), lquadrat = 0.5, wquadrat = 0.5)
+    os._exit(0)
