@@ -1,0 +1,50 @@
+date,village,name,land_area,rootstock_age,varieties,other_vars,yield_per_season,intercropping,intercropped_crops,diseases,d_management,fungicides,formulation_type,freq_application,preharvest_int,application_time,eff_chemicals
+01/03/2022,Urumpirai north,Paramanathan Pakeerathan,8,8,Israel blue,,625,yes,corn;pumpkin,downy mildew,chemical,Mancozeb;Ridomil;Antracol;BPMC;Marshall mix,wp;ec,,10,m;e,high
+01/03/2022,Urumpirai north,Kundumany Subaharan,31,4,Israel blue,,700,yes,pumpkin;onion,downy mildew,chemical,Mancozeb,wp;ec,24,5,m;e,high
+01/03/2022,Urumpirai north,Poothappillai Navaratnam,9.5,3,Israel blue,,450,yes,onion;bitter gourd;long beans,downy mildew,chemical,local organic preparations,wp;ec,15,10,m;e,high
+01/03/2022,Urumpirai north,Subramaniyam Panneerselvam,12,5,Israel blue,,400,yes,onion,downy mildew;powdery mildew,chemical,Marshall mix; Mancozeb,wp;ec,24,6,m;e,high
+01/03/2022,Urumpirai north,Sellaththurai Thankarasa,32,4,Israel blue,,600,yes,snake gourd;bitter gourd,downy mildew,chemical,local organic preparations;Mancozeb;BPMC,wp;ec,20,10,m;e,high
+03/03/2022,Chunnakam,Appayya Jeyanathan,12,6,Israel blue,,500,yes,beetroot;onion;tobacco,downy mildew,chemical,Cabriotop;Cauldron,wp;ec,20,15,m;e,high
+03/03/2022,Urumpirai north,Vijayaratnam Susithan,20,4,Israel blue,Red cardinal,525,yes,long beans;bitter gourd;snake gourd,downy mildew;powdery mildew,chemical,Mancozeb;Cosavet sulphur,wp;ec,21,25,m;e,high
+03/03/2022,Urumpirai north,Kanthasamy Susithan,25,7,Israel blue,Sonaka,,yes,bitter gourd;snake gourd,downy mildew;powdery mildew,ipm,Acrobat;Cabriotop; Cosavet sulphur,wp;ec,21,15,m;e,high
+04/03/2022,Chunnakam south,Kanesu Gnaneswaran,20,4,Israel blue,Sonaka,500,yes,papaya;chilli;onion;cabbage;beetroot;potato,downy mildew;powdery mildew,chemical,Ridomil;Cabriotop;Castodia,wp;ec,21,10,m;e,high
+04/03/2022,Chunnakam south,Arunasalam Jeyakanthan,18,3,Israel blue,,,yes,onion;cabbage,downy mildew,chemical,Antracol;Ridomil,wp;ec,12,10,m;e,high
+04/03/2022,Urumpirai north,Murugan Theiveenthiran,12,4,Israel blue,,450,yes,bitter gourd;snake gourd,downy mildew,chemical,Mancozeb;Baurs sulphur;MIG Abamectin,wp;ec,15,15,m;e,high
+04/03/2022,Urumpirai north,Kanthi Sivalingam,10,3,Israel blue,,500,yes,bitter gourd;snake gourd;long beans,downy mildew;powdery mildew,chemical,Mancozeb;Ridomil;Marshall mix,wp;ec,24,10,m;e,high
+04/03/2022,Urumpirai north,Nallaiyya Ganesalingam,14,2,Israel blue,Sonaka;Red cardinal,450,yes,onion;beetroot,downy mildew;powdery mildew,chemical,Mancozeb;Antracol;Cabriotop,wp;ec,12,10,m,high
+04/03/2022,Urumpirai north,Vairavan Sivaruban,12,3,Israel blue,Red cardinal,575,yes,onion;bitter gourd;long beans,downy mildew,chemical,,wp;ec,24,15,m,high
+04/03/2022,Chunnakam south,Ponnuththurai Srikantha,11,2,Israel blue,,500,yes,tobacco;maize;onion,downy mildew;powdery mildew,chemical,Ridomil;Cabriotop;Castodia,wp;ec,18,10,m,high
+04/03/2022,Chunnakam south,Srithevan Vinujan,20,4,Israel blue,,400,,,downy mildew;powdery mildew,chemical,local organic preparations;Mancozeb,wp;ec,20,15,m;e,high
+04/03/2022,Urumpirai north,Sellaththurai Jeyarasa,10,3,Israel blue,Red cardinal;Sonaka,450,yes,beetroot;onion;tobacco,downy mildew;powdery mildew,chemical,,wp;ec,,2,e,high
+04/03/2022,Urumpirai north,Kanthaija Arunthavarasa,20,5,Israel blue,Sonaka,400,yes,potato;bitter gourd;spinach,downy mildew;powdery mildew,chemical,Folicur,wp;ec,18,5,e,high
+07/03/2022,Urumpirai north,Sivanesan Sasithan,16,3,Israel blue,,500,yes,inion;beetroot,downy  mildew;powdery mildew,chemical,Antracol;Mancozeb;Amistar;Custodio;Ridomol;Cabriotop,wp;ec,,10,m,high
+07/03/2022,Urumpirai north,Kanthaia Pathmanathan,35,3,Israel blue,,750,yes,long beans;bitter gourd;snake gourd,downy mildew;powdery mildew,ipm,Baurs sulphur;Mancozeb;BPMC,wp;ec,18,40,m;e,low
+07/03/2022,Urumpirai north,Anthonymuththu Uthayanathan,3,7,Israel blue,,400,yes,snake gourd;tomato;eggplant,downy mildew,chemical,Mancozeb;Admire;Mitsui,wp;ec,18,10,e,low
+07/03/2022,Urumpirai north,Ponnan Sivagnanam,12,6,Israel blue,,750,yes,beetroot;chilli;spinach;onion,downy mildew;powdery mildew,chemical,Water spray;BPMC;Antracol;Mancozeb,wp;ec,18,20,m,low
+07/03/2022,Urumpirai north,Kaanthi Kanaharatnam,15,0.083333333,Israel blue,,300,no,,downy mildew;powdery mildew,chemical,Baur's captan;Protector chlorothalonil,wp;ec,18,8,m;e,low
+07/03/2022,Chunnakam south,Kirushnan Ketheeswaran,32,5,Israel blue,,,no,,downy mildew;powdery mildew,ipm,Mancozeb;Mitsui;Antracol;Neem leaf digest,wp;ec,12,1,m;e,high
+08/03/2022,Aalady,Kanthan Balasingam,15,8,Israel blue,,100,no,,downy mildew;powdery mildew,chemical,Baur's sulphur;Cabriotop,wp;ec,21,15,m,high
+08/03/2022,Viththahapuram,Sivarasa Sivanesan,26,10,Israel blue,Red cardinal,150,yes,long beans;onion;tobacco,downy mildew;powdery mildew,ipm,Admire;Folicur,wp;ec,21,25,m,low
+08/03/2022,Ilavalai north,Subramaniyam Mathimohan,30,10,Israel blue,Muscat MI; Thompson;Sonaka,400,no,,downy mildew;powdery mildew,chemical,Mancozeb;Baurs sulphur;MIG Abamectin,wp;ec,30,4,m;e,low
+08/03/2022,Ilavalai north,Sivabalasingam Stephen,30,,Israel blue,,610,no,,downy mildew;powdery mildew,chemical,Mancozeb;Baur's sulphur,wp;ec,12,7,m;e,low
+08/03/2022,Ilavalai north,Sinnaththurai Cahndran,12,5,Israel blue,,300,yes,tobacco;bitter gourd,downy mildew;powdery mildew,chemical,Mancozeb;Baur's sulphur,wp;ec,30,5,m,moderate
+09/03/2022,Urumpirai north,Sinnayya Balendran,30,5,Israel blue,Sonaka;Red cardinal,750,no,,downy mildew;powdery mildew,chemical,Ridomil;Antracol;Mancozeb;Folicur,wp;ec,25,60,m;e,high
+15/03/2022,Urumpirai east,Thambiraja Sritharan,6,3,Indian Black,,250,yes,beetroot,downy mildew,ipm,Imidacloprid;Mitsui;Marshall,wp;ec,9,40,m;e,low
+15/03/2022,Urumpirai west,Luxmanan Selvarajah,37,8,Israel blue,Sonaka;Red cardinal,750,no,,downy mildew,ipm,Admire;Imidacloropid,wp;ec,18,20,m;e,low
+15/03/2022,Kollankaladdy,Ariyamoorthy Sabaratnam,5,10,Israel blue,Sonaka;Muscat MI,500,no,,downy mildew;powdery mildew,chemical,,wp;ec,24,10,m;e,low
+15/03/2022,Urumpirai east,Namasivayam Kumarasuvamy,25,3,Israel blue,,,yes,cabbage,downy mildew,chemical,Mancozeb,wp;ec,12,30,m,low
+16/03/2022,Urumpirai north,Selvarajah Niroshan,8,15,Israel blue,Red cardinal,650,yes,long beans; onion,downy mildew;powdery mildew,chemical,Mancozeb;Antracol;Selecron,wp;ec,15,,m;e,high
+16/03/2022,Urumpirai north,Kanthaija Arunthavanesan,12,10,Israel blue,Red cardinal,,yes,onion;beetroot,downy mildew;powdery mildew,chemical,Baur's sulphur;Antracol;Folicur,wp;ec,24,40,e,low
+16/03/2022,Urumpirai north,Pathmanathan Pathmaseelan,5,4,Israel blue,Red cardinal,500,yes,bitter gourd;snake gourd,downy mildew,chemical,Ridomil;Mancozeb;Acrobat,wp;ec,24,25,e,low
+16/03/2022,Urumpirai north,Thanabalasingam Nishanthan,10,2,Israel blue,,700,no,,downy mildew,chemical,Water spray,wp;ec,24,30,m,high
+09/03/2022,Ilavalai,Venkatesh Thamilselvan,30,2,Israel blue,,600,yes,bitter gourd;snake gourd;potato;beetroot,downy mildew;powdery mildew,chemical,Water spray;BPMC;Antracol;Mancozeb;Ridomil,wp;ec,18,10,m,low
+09/03/2022,Thellipalai southwest,Gopal Ravichandran,12,7,Israel blue,Muscat MI;Sonaka,,yes,banana chilli;chilli;onion;potato,downy mildew;powdery mildew,chemical,,wp;ec,24,15,m,low
+09/03/2022,Ilavalai north,Sathyavijayan Krishnan,28,6,Israel blue,,450,yes,banana chilli;chilli;beetroot;onion;potato,downy mildew,chemical,Water spray;BPMC;Antracol,wp;ec,21,10,e,moderate
+15/03/2022,Navakkiri,Mathiyalagan Vinoth,16,12,Israel blue,,,no,,downy mildew;powdery mildew,chemical,Acrobat;Imidacloprid;Mitsui;Marshall,wp;ec,15,3,m,low
+15/03/2022,Navakkiri,Mahenthiran Gopinath,18,9,Israel blue,,600,yes,onion;leeks,downy mildew;powdery mildew,chemical,Admire;Imidacloropid,wp;ec,,,m;e,high
+15/03/2022,Navakkiri,Periyayya Jeyachandran,23,5,Israel blue,,,no,,downy mildew;powdery mildew,chemical,Mancozeb;Antracol;Selecron,wp;ec,12,15,m;e,high
+14/03/2022,Chunnakam south,Lakshmanan Rajesh,16,2,Israel blue,,450,yes,chilli;banana chilli;eggplant,downy mildew;powdery mildew,ipm,Baur's sulphur;Antracol;Folicur,wp;ec,15,10,m;e,low
+09/03/2022,Chunnakam south,Justin Alosyous Jeevanesan,19,5,Israel blue,,300,yes,bitter gourd;snake gourd,downy mildew,chemical,Ridomil;Mancozeb;Acrobat,wp;ec,21,40,m,low
+18/03/2022,Chunnakam south,Karunaharan Ravikumar,29,5,Israel blue,Thompson;Sonaka,400,yes,long beans;bitter gourd;potato,downy mildew;powdery mildew,chemical,Water spray,wp;ec,18,,m,low
+13/03/2022,Thellipalai,Naavukkarasu Premkumar,9,3,Israel blue,,450,yes,onion;potato;beetroot,downy mildew;powdery mildew,chemical,BPMC;Antracol,wp;ec,18,,m;e,low
+20/03/2022,Navakkiri,Thangaraju Ganapathi,5,7,Israel blue,Muscat MI,325,yes,onion;cabbage;radish,downy mildew;powdery mildew,chemical,Ridomil;Antracol,wp;ec,,25,m;e,low
