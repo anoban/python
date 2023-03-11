@@ -1,8 +1,10 @@
 import re
+import sys
 import typing
 from urllib import (request, error)
 import threading
 import ctypes
+from ctypes import (windll, wintypes)
 from bs4 import BeautifulSoup
 
 
@@ -23,7 +25,7 @@ def fetch_llvm_releases_github_page() -> str:
         with request.urlopen(req) as response:
             page = str(response.read())
     except error.HTTPError as err:
-        raise error.HTTPError(err.__dict__)
+        print(err.__dict__)
     return page
 
 
@@ -37,8 +39,8 @@ def extract_llvm_release_versions_and_links(html_document: str) -> typing.Dict[s
     download URIs and returns them paired in a dictionary.
     Requires BeautifulSoup for parsing the HTML document.
 
-    Note that this function is delicate and prone to breaks as it depends on very intricate structural details of the HTML ducument.
-    Any small changes in the structure of the HTML ducument could potentially break the parsing logic. (If GitHub decides to change their page 
+    Note that this function is delicate and prone to breaks as it depends on very intricate structural details of the HTML document.
+    Any small changes in the structure of the HTML document could potentially break the parsing logic. (If GitHub decides to change their page 
     structures)
 
     """
@@ -47,7 +49,7 @@ def extract_llvm_release_versions_and_links(html_document: str) -> typing.Dict[s
         raise TypeError(
             "Incompatible types. Argument must be of string <class 'str'> type.")
 
-    links: typing.Dict[str, str] = dict()
+    links: typing.Dict[str, str] = {}
 
     soup = BeautifulSoup(html_document, "html.parser")
 
@@ -75,10 +77,10 @@ class Win64FetcherThread(threading.Thread):
     link: str - URI to the web page of a specific LLVM release version.
     regex: typing.Pattern[str] - a compiled regex pattern to match the download URI of the downloadable win64 executable.
 
-    the .run() method (invoked implicitly when calling thread.start()) sends a HHTP GET request to the specicifed URI,
+    the .run() method (invoked implicitly when calling thread.start()) sends a HTTP GET request to the specified URI,
     receives, parses the response body to extract the download URI.
     This URI is stored in the .result attribute.
-    If a specfic LLVM release hasn't provided a downloadable win64 executable, the .result attribute will be "None".
+    If a specific LLVM release hasn't provided a downloadable win64 executable, the .result attribute will be "None".
 
     """
 
@@ -120,7 +122,7 @@ class Win64FetcherThread(threading.Thread):
                 else:
                     self.result = "None"
             except error.HTTPError as err:
-                print(err.__dict__())
+                print(err.__dict__)
 
 
 def run_threads(page_links: typing.Dict[str, str]) -> typing.Dict[str, str]:
@@ -157,42 +159,60 @@ def run_threads(page_links: typing.Dict[str, str]) -> typing.Dict[str, str]:
 
 def activate_virtual_terminal_escapes_win32() -> None:
     """
-
+    A function that activates the virtual terminal escape sequences in Windows.
+    Windows specific, uses a C FFI to interact with Win32 API functions.
+    Uses GetStdHandle, GetConsoleMode and SetConsoleMode Win32 procedures.
     """
-    STD_OUTPUT_HANDLE = ctypes.wintypes.DWORD(-11)
-    INVALID_HANDLE_VALUE = ctypes.wintypes.HANDLE(-1)
-    ENABLE_VIRTUAL_TERMINAL_PROCESSING = ctypes.wintypes.DWORD(0x0004)
 
-    GetStdHandle = ctypes.windll.kernel32.GetStdHandle
-    GetStdHandle.argtypes = [ctypes.wintypes.DWORD]
-    GetStdHandle.restype = ctypes.wintypes.HANDLE
+    # Emulating C macros.
+    STD_OUTPUT_HANDLE = wintypes.DWORD(-11)
+    INVALID_HANDLE_VALUE = wintypes.HANDLE(-1)
+    ENABLE_VIRTUAL_TERMINAL_PROCESSING = wintypes.DWORD(0x0004)
 
-    GetConsoleMode = ctypes.windll.kernel32.GetConsoleMode
-    GetConsoleMode.argtypes = [ctypes.wintypes.HANDLE, ctypes.wintypes.LPDWORD]
-    GetConsoleMode.restype = ctypes.wintypes.BOOL
+    # Function (re-)declarations.
+    GetStdHandle = windll.kernel32.GetStdHandle
+    GetStdHandle.argtypes = [wintypes.DWORD]
+    GetStdHandle.restype = wintypes.HANDLE
 
-    SetConsoleMode = ctypes.windll.kernel32.SetConsoleMode
-    SetConsoleMode.argtypes = [ctypes.wintypes.HANDLE, ctypes.wintypes.DWORD]
-    SetConsoleMode.restype = ctypes.wintypes.BOOL
+    GetConsoleMode = windll.kernel32.GetConsoleMode
+    GetConsoleMode.argtypes = [wintypes.HANDLE, wintypes.LPDWORD]
+    GetConsoleMode.restype = wintypes.BOOL
 
-    std_out: ctypes.wintypes.HANDLE = GetStdHandle(STD_OUTPUT_HANDLE)
+    SetConsoleMode = windll.kernel32.SetConsoleMode
+    SetConsoleMode.argtypes = [wintypes.HANDLE, wintypes.DWORD]
+    SetConsoleMode.restype = wintypes.BOOL
 
-    dwMode = ctypes.wintypes.DWORD(0)
-    GetConsoleMode(std_out, ctypes.byref(dwMode))
-    dwMode.value |= ENABLE_VIRTUAL_TERMINAL_PROCESSING.value
-
-    SetConsoleMode(std_out, dwMode)
+    std_out: wintypes.HANDLE = GetStdHandle(STD_OUTPUT_HANDLE)
+    if std_out == INVALID_HANDLE_VALUE:
+        print(
+            f"Access to standard output denied! Error: {ctypes.GetLastError()}"
+        )
+    else:
+        dwMode = wintypes.DWORD(0)
+        if GetConsoleMode(std_out, ctypes.byref(dwMode)):
+            dwMode.value |= ENABLE_VIRTUAL_TERMINAL_PROCESSING.value
+            if not SetConsoleMode(std_out, dwMode):
+                print(
+                    f"Activation of Win32 virtual terminal escapes failed. Error {ctypes.GetLastError()}"
+                )
 
 
 def print_results(results: typing.Dict[str, str]) -> None:
     """
-
+    Prints the dictionary to console, taking advantage of the virtual terminal escapes to
+    print keys and values in separate colours.
     """
 
     activate_virtual_terminal_escapes_win32()
     for (release, link) in results.items():
-        print(f"\x1b[33m{release}: \x1b[32m{link}")
+        print(f"\x1b[33m{release:15s}  ->  \x1b[32m{link}")
     print("\x1b[0m")
 
 
 if __name__ == "__main__":
+    page: str = fetch_llvm_releases_github_page()
+    versions_and_page_links: typing.Dict[str, str] = extract_llvm_release_versions_and_links(page)
+    versions_and_win64_uris: typing.Dict[str, str] = run_threads(versions_and_page_links)
+    activate_virtual_terminal_escapes_win32()
+    print_results(versions_and_win64_uris)
+    sys.exit(0)
