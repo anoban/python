@@ -78,7 +78,7 @@ class Win64FetcherThread(threading.Thread):
     the .run() method (invoked implicitly when calling thread.start()) sends a HHTP GET request to the specicifed URI,
     receives, parses the response body to extract the download URI.
     This URI is stored in the .result attribute.
-    If a specfic LLVM release hasn't provided a downloadable win64 executable, the .result attribute will be None.
+    If a specfic LLVM release hasn't provided a downloadable win64 executable, the .result attribute will be "None".
 
     """
 
@@ -95,7 +95,7 @@ class Win64FetcherThread(threading.Thread):
 
         threading.Thread.__init__(self)
         self.link: str = link
-        self.result: str = None
+        self.result: str = ""
         self.BASE_URL: str = "https://github.com"
         self.pattern: typing.Pattern[str] = regex
 
@@ -118,7 +118,7 @@ class Win64FetcherThread(threading.Thread):
                 if download_link:
                     self.result = self.BASE_URL + download_link[0]
                 else:
-                    self.result = None
+                    self.result = "None"
             except error.HTTPError as err:
                 print(err.__dict__())
 
@@ -136,7 +136,8 @@ def run_threads(page_links: typing.Dict[str, str]) -> typing.Dict[str, str]:
     """
 
     regex = re.compile(
-        r"/llvm/llvm-project/releases/download/[\d\w\-\.\/]*win64.exe")
+        r"/llvm/llvm-project/releases/download/[\d\w\-\.\/]*win64.exe"
+    )
     win64_downloads = dict.fromkeys(page_links.keys(), "")
 
     threads = [Win64FetcherThread(link=uri, regex=regex)
