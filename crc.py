@@ -1,5 +1,3 @@
-
-
 def create_crc32_lookuptable() ->  list[int]:
     
     """
