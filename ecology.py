@@ -97,4 +97,4 @@ if __name__ == "__main__":
     Question(fclass = np.arange(0, 4), fc_freq = np.array([46, 34, 14, 6]), lquadrat = 0.3, wquadrat = 0.3)
     print("2015 ECE")
     Question(fclass = np.arange(0, 4), fc_freq = np.array([25, 19, 5, 1]), lquadrat = 0.5, wquadrat = 0.5)
-    os._exit(0)
+    os.exit(0)
