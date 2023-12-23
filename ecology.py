@@ -1,4 +1,5 @@
-import os
+import sys
+import typing
 import numpy as np
 import numpy.typing as npTyping
 
@@ -34,7 +35,7 @@ def Question(fclass: npTyping.NDArray[np.int64], fc_freq: npTyping.NDArray[np.in
     _mean = (fclass* fc_freq).sum() / fc_freq.sum()
     
     # probabilities for frequency classes
-    prob = dict.fromkeys(fclass)
+    prob: dict[np.int64, np.float64 | typing.Any] = dict.fromkeys(fclass)
     
     # P = (e^(-m) * (m^n)) / n!
     for fc in prob.keys():
@@ -97,4 +98,4 @@ if __name__ == "__main__":
     Question(fclass = np.arange(0, 4), fc_freq = np.array([46, 34, 14, 6]), lquadrat = 0.3, wquadrat = 0.3)
     print("2015 ECE")
     Question(fclass = np.arange(0, 4), fc_freq = np.array([25, 19, 5, 1]), lquadrat = 0.5, wquadrat = 0.5)
-    os.exit(0)
+    sys.exit(0)
