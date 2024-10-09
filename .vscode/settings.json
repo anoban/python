@@ -3,15 +3,6 @@
         ".clang-format": "yaml",
         ".clang-tidy": "yaml",
         ".clangd": "yaml",
-        "*.cu": "cuda-cpp",
-        "*.cuh": "cuda-cpp",
-        "*.h": "c",
-        "*.c": "c",
-        "*.clang-format": "yaml",
-        "*.clang-tidy": "yaml",
-        "atomic": "c",
-        "compare": "c",
-        "optional": "c",
-        "xmemory": "c"
+        "*.h": "c"
     }
 }
