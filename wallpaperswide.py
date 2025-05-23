@@ -109,6 +109,10 @@ def extract_best_1610_resolution_link(wallpaper_resolutions_html_div: str) -> Un
     pass
 
 
+def parse_commandline_arguments() -> dict[str, str]:
+    pass
+
+
 def main() -> None:
     first_page: str | None = download_category_firstpage_html(WallpaperCategory(r"girls"))
     print(first_page)
