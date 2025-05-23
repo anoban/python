@@ -82,13 +82,9 @@ def download_category_firstpage_html(category: WallpaperCategory) -> str | None:
 
 
 def harvest_wallpaper_webpage_html(_wallpaper_url: str) -> str:
+    """ """
     with urlopen(url=FirefoxImpersonator(url=_wallpaper_url)) as connection:
         wallpaper_download_page: str = connection.read()
-    [
-        _.get("href", None)
-        for _ in link_grid.find_all("a", attrs={"target": "_self"})
-        if "16:10" in _.get("title") and "Dual" not in _.get("title")
-    ][-1]
 
 
 def extract_best_169_resolution_link(wallpaper_resolutions_html_div: str) -> Union[str, None]:
@@ -106,14 +102,21 @@ def extract_best_1610_resolution_link(wallpaper_resolutions_html_div: str) -> Un
     """
     16:10
     """
-    pass
+
+    [
+        _.get("href", None)
+        for _ in link_grid.find_all("a", attrs={"target": "_self"})
+        if "16:10" in _.get("title") and "Dual" not in _.get("title")
+    ][-1]
 
 
 def parse_commandline_arguments() -> dict[str, str]:
+    """ """
     pass
 
 
 def main() -> None:
+    """ """
     first_page: str | None = download_category_firstpage_html(WallpaperCategory(r"girls"))
     print(first_page)
 
