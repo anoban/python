@@ -3,7 +3,8 @@
 
 # import re
 # from bs4 import BeautifulSoup
-# from numba import jit
+
+import argparse
 from typing import Union, override
 from urllib.request import Request, urlopen
 
@@ -11,9 +12,25 @@ WALLPAPERSWIDE_BASE_URL: str = r"https://wallpaperswide.com"
 WALLPAPERSWIDE_WALLPAPER_DOWNLOAD_TEMPLATE_URL: str = r"https://wallpaperswide.com/download/{}"
 
 
+class FirefoxImpersonator(Request):
+    # impersonate Firefox Win64 to avoid request denials by the server
+    def __init__(self, url: str) -> None:
+        """
+        Could be used as a drop-in replacement for a Request type object
+        """
+        super().__init__(
+            url,
+            data=None,
+            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:138.0) Gecko/20100101 Firefox/138.0"},
+            origin_req_host=None,
+            unverifiable=False,
+            method="GET",
+        )
+
+
 class WallpaperCategory(object):
     WALLPAPERSWIDE_WALLPAPER_CATEGORY_TEMPLATE_URL: str = r"https://wallpaperswide.com/{}-desktop-wallpapers.html"
-    WALLPAPERSWIDE_VALID_WALLPAPER_CATEGORIES: list[str] = [
+    WALLPAPERSWIDE_VALID_WALLPAPER_CATEGORIES: list[str] = [  # categories valid in wallpaperswide as of writing
         "aero",
         "animals",
         "architecture",
@@ -45,10 +62,11 @@ class WallpaperCategory(object):
     ]
 
     def __init__(self, _category: str) -> None:
-        if _category not in WallpaperCategory.WALLPAPERSWIDE_VALID_WALLPAPER_CATEGORIES:
+        if _category not in WallpaperCategory.WALLPAPERSWIDE_VALID_WALLPAPER_CATEGORIES:  # do a preliminary input validation
             raise ValueError(
-                f"Invalid wallpaper category {_category}, expected on of {WallpaperCategory.WALLPAPERSWIDE_VALID_WALLPAPER_CATEGORIES}"
+                f"Invalid wallpaper category {_category}, expected one of {WallpaperCategory.WALLPAPERSWIDE_VALID_WALLPAPER_CATEGORIES}"
             )
+
         self._category: str = _category
         self._url: str = WallpaperCategory.WALLPAPERSWIDE_WALLPAPER_CATEGORY_TEMPLATE_URL.format(_category)
 
@@ -57,19 +75,10 @@ class WallpaperCategory(object):
         return f"{self._category} :: url <<{self._url}>>"
 
     def url(self) -> str:
+        """
+        Return the url for the wallpaper category of choice
+        """
         return self._url
-
-
-class FirefoxImpersonator(Request):
-    def __init__(self, url: str) -> None:
-        super().__init__(
-            url,
-            data=None,
-            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:138.0) Gecko/20100101 Firefox/138.0"},
-            origin_req_host=None,
-            unverifiable=False,
-            method="GET",
-        )
 
 
 def download_category_firstpage_html(category: WallpaperCategory) -> str | None:
@@ -112,12 +121,14 @@ def extract_best_1610_resolution_link(wallpaper_resolutions_html_div: str) -> Un
 
 def parse_commandline_arguments() -> dict[str, str]:
     """ """
+
+    parser = argparse.ArgumentParser(prog=r"WallpapersWide")
     pass
 
 
 def main() -> None:
     """ """
-    first_page: str | None = download_category_firstpage_html(WallpaperCategory(r"girls"))
+    first_page: str | None = download_category_firstpage_html(WallpaperCategory(r"games"))
     print(first_page)
 
 
