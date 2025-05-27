@@ -81,7 +81,7 @@ class WallpaperCategory(object):
         return self._url
 
 
-def download_category_firstpage_html(category: WallpaperCategory) -> str | None:
+def download_category_firstpage(category: WallpaperCategory) -> str | None:
     try:
         with urlopen(FirefoxImpersonator(category.url())) as connection:
             html_page = connection.read()
@@ -90,7 +90,7 @@ def download_category_firstpage_html(category: WallpaperCategory) -> str | None:
     return html_page
 
 
-def harvest_wallpaper_webpage_html(_wallpaper_url: str) -> str:
+def download_wallpaper_download_page(_wallpaper_url: str) -> str:
     """ """
     with urlopen(url=FirefoxImpersonator(url=_wallpaper_url)) as connection:
         wallpaper_download_page: str = connection.read()
@@ -119,7 +119,7 @@ def extract_best_1610_resolution_link(wallpaper_resolutions_html_div: str) -> Un
     ][-1]
 
 
-def parse_commandline_arguments() -> dict[str, str]:
+def parse_programme_commandline_arguments() -> dict[str, str]:
     """ """
 
     parser = argparse.ArgumentParser(prog=r"WallpapersWide")
@@ -128,7 +128,7 @@ def parse_commandline_arguments() -> dict[str, str]:
 
 def main() -> None:
     """ """
-    first_page: str | None = download_category_firstpage_html(WallpaperCategory(r"games"))
+    first_page: str | None = download_category_firstpage(WallpaperCategory(r"girls"))
     print(first_page)
 
 
