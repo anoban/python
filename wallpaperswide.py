@@ -95,14 +95,15 @@ def extract_wallpaper_page_links_from_thumbnails_and_next_thumbnails_page_link(_
     """
     returns the links for each thumbnail in the current page and the link to the next thumbnails page
     """
-    soup: BeautifulSoup = BeautifulSoup(_thumbnail_grid_page, features="html.parser")
-    pass
+    thumbnail_grid: BeautifulSoup = BeautifulSoup(_thumbnail_grid_page, features="html.parser")
+    thumbnail_grid.find_all("li", attrs={"class": "wall"}, recursive=False)
 
 
-def download_wallpaper_download_page(_wallpaper_url: str) -> str:
+def download_html(_wallpaper_url: str) -> str:
     """ """
     with urlopen(url=FirefoxImpersonator(url=_wallpaper_url)) as connection:
         wallpaper_download_page: str = connection.read()
+    return wallpaper_download_page
 
 
 def extract_best_169_resolution_link(wallpaper_resolutions_html_div: str) -> Union[str, None]:
