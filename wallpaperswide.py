@@ -8,6 +8,8 @@ import argparse
 from typing import Union, override
 from urllib.request import Request, urlopen
 
+from bs4 import BeautifulSoup
+
 WALLPAPERSWIDE_BASE_URL: str = r"https://wallpaperswide.com"
 WALLPAPERSWIDE_WALLPAPER_DOWNLOAD_TEMPLATE_URL: str = r"https://wallpaperswide.com/download/{}"
 
@@ -16,7 +18,7 @@ class FirefoxImpersonator(Request):
     # impersonate Firefox Win64 to avoid request denials by the server
     def __init__(self, url: str) -> None:
         """
-        Could be used as a drop-in replacement for a Request type object
+        to be used as a drop-in replacement for a Request type objects with urlopen()
         """
         super().__init__(
             url,
@@ -76,18 +78,27 @@ class WallpaperCategory(object):
 
     def url(self) -> str:
         """
-        Return the url for the wallpaper category of choice
+        returns the url for the wallpaper category of choice,
+        when the choosen category is "games" the returned url will be https://wallpaperswide.com/games-desktop-wallpapers.html"
         """
         return self._url
 
 
-def download_category_firstpage(category: WallpaperCategory) -> str | None:
+def download_category_first_thumbnails_page(category: WallpaperCategory) -> str | None:
     try:
         with urlopen(FirefoxImpersonator(category.url())) as connection:
             html_page = connection.read()
     except BaseException as error:
         raise RuntimeError(f"{error.__dict__}") from error
     return html_page
+
+
+def extract_wallpaper_page_links_from_thumbnails_and_next_thumbnails_page_link(_wallpapers_grid_page_link: str) -> tuple[tuple[str], str]:
+    """
+    returns the links for each thumbnail in the current page and the link to the next thumbnails page
+    """
+    soup: BeautifulSoup = BeautifulSoup(_wallpapers_grid_page_link, features="html.parser")
+    pass
 
 
 def download_wallpaper_download_page(_wallpaper_url: str) -> str:
@@ -128,7 +139,7 @@ def parse_programme_commandline_arguments() -> dict[str, str]:
 
 def main() -> None:
     """ """
-    first_page: str | None = download_category_firstpage(WallpaperCategory(r"girls"))
+    first_page: str | None = download_category_first_thumbnails_page(WallpaperCategory(r"girls"))
     print(first_page)
 
 
