@@ -3,6 +3,7 @@
 
 # import re
 import argparse
+import sys
 from typing import Union, override
 from urllib.request import Request, urlopen
 
@@ -82,15 +83,6 @@ class WallpaperCategory(object):
         return self._url
 
 
-def download_category_thumbnails_first_page(category: WallpaperCategory) -> str | None:
-    try:
-        with urlopen(FirefoxImpersonator(category.url())) as connection:
-            html_page = connection.read()
-    except BaseException as error:
-        raise RuntimeError(f"{error.__dict__}") from error
-    return html_page
-
-
 def extract_wallpaper_page_links_from_thumbnails_and_next_thumbnails_page_link(_thumbnail_grid_page: str) -> tuple[tuple[str], str]:
     """
     returns the links for each thumbnail in the current page and the link to the next thumbnails page
@@ -100,10 +92,16 @@ def extract_wallpaper_page_links_from_thumbnails_and_next_thumbnails_page_link(_
 
 
 def download_html(_wallpaper_url: str) -> str:
-    """ """
-    with urlopen(url=FirefoxImpersonator(url=_wallpaper_url)) as connection:
-        wallpaper_download_page: str = connection.read()
-    return wallpaper_download_page
+    """
+    a generic
+    """
+
+    try:
+        with urlopen(FirefoxImpersonator(url=_wallpaper_url)) as connection:
+            html_page = connection.read()
+    except BaseException as error:
+        raise RuntimeError(f"{error.__dict__}") from error
+    return html_page
 
 
 def extract_best_169_resolution_link(wallpaper_resolutions_html_div: str) -> Union[str, None]:
@@ -140,7 +138,8 @@ def parse_programme_commandline_arguments() -> dict[str, str]:
 
 def main() -> None:
     """ """
-    first_page: str | None = download_category_thumbnails_first_page(WallpaperCategory(r"girls"))
+    print(sys.argv)
+    first_page: str | None = download_html(WallpaperCategory(r"girls").url())
     print(first_page)
 
 
