@@ -4,10 +4,10 @@
 # import re
 import argparse
 import sys
-from typing import Union, override
+from typing import Optional, Union, override
 from urllib.request import Request, urlopen
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, element
 
 WALLPAPERSWIDE_BASE_URL: str = r"https://wallpaperswide.com"
 WALLPAPERSWIDE_WALLPAPER_DOWNLOAD_TEMPLATE_URL: str = r"https://wallpaperswide.com/download/{}"
@@ -87,8 +87,11 @@ def extract_wallpaper_page_links_from_thumbnails_and_next_thumbnails_page_link(_
     """
     returns the links for each thumbnail in the current page and the link to the next thumbnails page
     """
-    thumbnail_grid: BeautifulSoup = BeautifulSoup(_thumbnail_grid_page, features="html.parser")
-    thumbnail_grid.find_all("li", attrs={"class": "wall"}, recursive=False)
+    page: BeautifulSoup = BeautifulSoup(_thumbnail_grid_page, features="html.parser")
+    thumbnail_grid: Optional[Union[element.PageElement, element.Tag, element.NavigableString]] = page.find(
+        "ul", attrs={"class": "wallpapers"}
+    )
+    return [thumb.get("href") for thumb in thumbnail_grid.find_all("li", attrs={"class": "wallpapers"}, recursive=True)]
 
 
 def download_html(_wallpaper_url: str) -> str:
@@ -139,8 +142,8 @@ def parse_programme_commandline_arguments() -> dict[str, str]:
 def main() -> None:
     """ """
     print(sys.argv)
-    first_page: str | None = download_html(WallpaperCategory(r"girls").url())
-    print(first_page)
+    first_thumbnails_page: str | None = download_html(WallpaperCategory(r"girls").url())
+    print(extract_wallpaper_page_links_from_thumbnails_and_next_thumbnails_page_link(first_thumbnails_page))
 
 
 if __name__ == "__main__":
