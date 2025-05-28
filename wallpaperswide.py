@@ -168,9 +168,13 @@ def parse_programme_commandline_arguments() -> dict[str, str]:
     """ """
 
     parser = argparse.ArgumentParser(prog=r"WallpapersWide")
-    parser.add_argument("--category")
-    parser.add_argument("--parallel-downloads")
-    parser.add_argument("--include-random-waits")
+    parser.add_argument("--c")  # category
+    parser.add_argument("--path")  # path to save the downloads
+
+    parser.add_argument("--irw")  # include-random-waits
+    parser.add_argument("--par")  # parallelize
+    parser.add_argument("--dt")  # download-thumbnails
+    parser.add_argument("--to")  # thumbnails only
 
 
 def main() -> None:
