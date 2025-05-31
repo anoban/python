@@ -2,11 +2,11 @@
 # https://wallpaperswide.com/spider_man_miles_morales_art-wallpapers.html
 
 # import re
-# from bs4 import BeautifulSoup
-
 import argparse
 from typing import Union, override
 from urllib.request import Request, urlopen
+
+from bs4 import BeautifulSoup
 
 WALLPAPERSWIDE_BASE_URL: str = r"https://wallpaperswide.com"
 WALLPAPERSWIDE_WALLPAPER_DOWNLOAD_TEMPLATE_URL: str = r"https://wallpaperswide.com/download/{}"
@@ -96,10 +96,12 @@ def harvest_wallpaper_webpage_html(_wallpaper_url: str) -> str:
         wallpaper_download_page: str = connection.read()
 
 
-def extract_best_169_resolution_link(wallpaper_resolutions_html_div: str) -> Union[str, None]:
+def extract_best_169_resolution_link(download_page: BeautifulSoup) -> Union[str, None]:
     """
     16:9
     """
+    link_grid = download_page.find("div", attrs={"class": "wallpaper-resolutions", "id": "wallpaper-resolutions"})
+
     [
         _.get("href", None)
         for _ in link_grid.find_all("a", attrs={"target": "_self"})
