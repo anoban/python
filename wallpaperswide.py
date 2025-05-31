@@ -7,11 +7,7 @@ import sys
 from typing import Optional, Union, override
 from urllib.request import Request, urlopen
 
-<<<<<<< HEAD
-from bs4 import BeautifulSoup
-=======
 from bs4 import BeautifulSoup, element
->>>>>>> 7ef038dc502c6bec2a026bbce76db3ab8bbe9b18
 
 WALLPAPERSWIDE_BASE_URL: str = r"https://wallpaperswide.com"
 WALLPAPERSWIDE_WALLPAPER_DOWNLOAD_TEMPLATE_URL: str = r"https://wallpaperswide.com/download/{}"
@@ -145,17 +141,13 @@ def download_html(_wallpaper_url: str) -> str:
     return html_page
 
 
-<<<<<<< HEAD
 def harvest_wallpaper_webpage_html(_wallpaper_url: str) -> str:
     """ """
     with urlopen(url=FirefoxImpersonator(url=_wallpaper_url)) as connection:
         wallpaper_download_page: str = connection.read()
 
 
-def extract_best_169_resolution_link(download_page: BeautifulSoup) -> Union[str, None]:
-=======
 def extract_best_169_resolution_link(wallpaper_resolutions_html_div: str) -> Union[str, None]:
->>>>>>> 7ef038dc502c6bec2a026bbce76db3ab8bbe9b18
     """
     16:9
     """
@@ -196,7 +188,7 @@ def parse_programme_commandline_arguments() -> dict[str, str]:
 def main() -> None:
     """ """
     print(sys.argv)
-    first_thumbnails_page: str | None = download_html(WallpaperCategory(r"motors").url())
+    first_thumbnails_page: str | None = download_html(WallpaperCategory(r"girls").url())
     print(extract_wallpaper_page_links_from_thumbnails_and_next_thumbnails_page_link(first_thumbnails_page))
 
 
