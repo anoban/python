@@ -4,7 +4,7 @@ from torch.utils.data import Dataset
 
 
 class CIFAR10(Dataset):
-    def __init__(self) -> None:
+    def __init__(self, fp:str|) -> None:
         super(Dataset, self).__init__()
 
     def __len__(self) -> int:
