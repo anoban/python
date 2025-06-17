@@ -38,3 +38,7 @@ ipython_config.py
 *.svclog
 *.scc
 *.lnk
+
+# datasets
+cifar10/*
+cifar100/*
