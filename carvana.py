@@ -74,21 +74,21 @@ class Up(nn.Module):
 
 
 class OutConv(nn.Module):
-    def __init__(self, in_channels, out_channels):
+    def __init__(self, in_channels: int, out_channels: int):
         super(OutConv, self).__init__()
         self.conv = nn.Conv2d(in_channels, out_channels, kernel_size=1)
 
-    def forward(self, x):
+    @override
+    def forward(self, x: torch.Tensor):
         return self.conv(x)
 
 
-"""Full assembly of the parts to form the complete network"""
-
-from .unet_parts import *
-
-
 class UNet(nn.Module):
-    def __init__(self, n_channels, n_classes, bilinear=False):
+    """
+    Full assembly of the parts to form the complete network
+    """
+
+    def __init__(self, n_channels: int, n_classes: int, bilinear: bool = False):
         super(UNet, self).__init__()
         self.n_channels = n_channels
         self.n_classes = n_classes
@@ -106,7 +106,8 @@ class UNet(nn.Module):
         self.up4 = Up(128, 64, bilinear)
         self.outc = OutConv(64, n_classes)
 
-    def forward(self, x):
+    @override
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         x1 = self.inc(x)
         x2 = self.down1(x1)
         x3 = self.down2(x2)
@@ -130,3 +131,7 @@ class UNet(nn.Module):
         self.up3 = torch.utils.checkpoint(self.up3)
         self.up4 = torch.utils.checkpoint(self.up4)
         self.outc = torch.utils.checkpoint(self.outc)
+
+
+def main() -> None:
+    pass
