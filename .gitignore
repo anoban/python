@@ -42,6 +42,7 @@ ipython_config.py
 # datasets
 cifar10/*
 cifar100/*
+carvana/*
 
 # pytorch models
 *.pt

@@ -1,9 +1,8 @@
+# credits https://github.com/milesial/Pytorch-UNet?tab=readme-ov-file
 from typing import override
 
 import torch
 import torch.nn as nn
-
-# credits https://github.com/milesial/Pytorch-UNet?tab=readme-ov-file
 from torch.nn.functional import pad
 
 
