@@ -135,13 +135,3 @@ class UNet(nn.Module):
         self.up3 = torch.utils.checkpoint(self.up3)
         self.up4 = torch.utils.checkpoint(self.up4)
         self.outc = torch.utils.checkpoint(self.outc)
-
-
-def main(model_path: str, images_path: str) -> None:
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = UNet(n_channels=3, n_classes=1)
-    model.to(device=device)
-
-
-if __name__ == r"__main__":
-    main()
