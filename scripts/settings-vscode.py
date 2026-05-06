@@ -1,4 +1,6 @@
-import json5, json
+import json
+
+import json5
 
 with open("./settings.json", mode="r") as fp:
     settings = json5.load(fp)

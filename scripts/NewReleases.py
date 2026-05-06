@@ -3,13 +3,14 @@ def checkNewPythonReleases(releaseType: str = "stable") -> None:
     A function to check the newly released of Python versions at Python.org (official Home page)
     Accepts a single argument specifying release type: default is stable release but this can be overriden by passing "pre-release"
     as releaseType.
-    Uses urllib, bs4 and colorama under the hood. 
+    Uses urllib, bs4 and colorama under the hood.
     """
 
     try:
         from urllib import request
+
         from bs4 import BeautifulSoup
-        from colorama import Fore, just_fix_windows_console, Style     # for pretty printing
+        from colorama import Fore, Style, just_fix_windows_console  # for pretty printing
     except ImportError:
         ImportError("Error occured when importing the necessary modules!")
 
@@ -43,7 +44,7 @@ def checkNewPythonReleases(releaseType: str = "stable") -> None:
             continue
 
     # console out
-    just_fix_windows_console()   # enable ANSI escape characters in Windows terminal
+    just_fix_windows_console()  # enable ANSI escape characters in Windows terminal
     print()
     print(Fore.WHITE + "-----------------------------------------")
     print(Fore.RED + "  Python version     |     Release date")
@@ -59,6 +60,7 @@ def checkNewPythonReleases(releaseType: str = "stable") -> None:
 
 if __name__ == "__main__":
     import sys
+
     # did not do error handling since sys is stdlib
     # sys.argv[0] is the programme name (script name)
     if (len(sys.argv) == 1) or (sys.argv[1] == "stable"):

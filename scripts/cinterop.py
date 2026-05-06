@@ -1,4 +1,5 @@
 # interoperating with handrolled C libraries
+
 import timeit
 
 import numpy as np
@@ -47,7 +48,7 @@ if __name__ == "__main__":
     numbers: tuple[int, ...] = tuple(range(0, 26))
     results: tuple[float, ...] = tuple(factorial(i) for i in numbers)
     tm = timeit.timeit(
-        stmt=f"res: tuple[float, ...] = tuple(factorial(i) for i in numbers)",
+        stmt="res: tuple[float, ...] = tuple(factorial(i) for i in numbers)",
         number=100,
         globals={"numbers": numbers, "factorial": factorial},
     )
